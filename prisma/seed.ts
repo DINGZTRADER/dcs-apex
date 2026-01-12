@@ -1,59 +1,76 @@
-import { PrismaClient } from '@prisma/client';
-import * as fs from 'fs';
-import * as path from 'path';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
-import { fileURLToPath } from 'url'; // New import
+import { PrismaClient } from '@prisma/client'
+import { prisma } from '../src/lib/prisma'
+import { readFileSync } from 'fs'
+import path from 'path'
+import { cwd } from 'process'
 
-const connectionString = process.env.DATABASE_URL as string;
-
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-
-const prisma = new PrismaClient({ adapter });
+/**
+ * Robust Seeding Script for DCS Apex
+ * 
+ * Instructions:
+ * 1. Ensure 'dummy/dataset2.json' exists.
+ * 2. Run: npx prisma db seed
+ */
 
 async function main() {
-  const __filename = fileURLToPath(import.meta.url); // Define __filename
-  const __dirname = path.dirname(__filename); // Define __dirname
+  console.log('🌱 Starting database seed...')
 
-  const seedDataPath = path.join(process.cwd(), 'seed_data.json');
-  const seedData = JSON.parse(fs.readFileSync(seedDataPath, 'utf-8'));
+  // Path to your provided JSON file
+  const seedFilePath = path.join(cwd(), 'dummy', 'dataset2.json')
 
-  for (const item of seedData) {
-    const { model, data } = item;
-    switch (model) {
-      case 'User':
-        await prisma.user.upsert({
-          where: { email: data.email },
-          update: {},
-          create: data,
-        });
-        break;
-      case 'Staff':
-        await prisma.staff.create({ data });
-        break;
-      case 'Student':
-        await prisma.student.upsert({
-          where: { studentNo: data.studentNo },
-          update: {},
-          create: data,
-        });
-        break;
-      case 'Expense':
-        await prisma.expense.create({ data });
-        break;
-      default:
-        console.warn(`Unknown model: ${model}`);
+  try {
+    const fileContent = readFileSync(seedFilePath, 'utf-8')
+    const seedData = JSON.parse(fileContent)
+
+    console.log(`📂 Found ${seedData.length} items to seed from ${seedFilePath}`)
+
+    for (const item of seedData) {
+      try {
+        if (item.model === 'User') {
+          await prisma.user.upsert({
+            where: { email: item.data.email },
+            update: {}, // Don't overwrite existing users
+            create: {
+              email: item.data.email,
+              password: item.data.password,
+              role: item.data.role,
+              isActive: item.data.isActive
+            }
+          })
+        }
+        else if (item.model === 'Student') {
+          await prisma.student.upsert({
+            where: { studentNo: item.data.studentNo },
+            update: {},
+            create: {
+              studentNo: item.data.studentNo,
+              fullName: item.data.fullName,
+              program: item.data.program,
+              year: item.data.year,
+              status: item.data.status
+            }
+          })
+        }
+        // Add other models here if present in dataset2.json
+
+      } catch (recordError) {
+        console.warn(`⚠️ Failed to seed ${item.model} (${JSON.stringify(item.data).slice(0, 50)}...):`, recordError)
+      }
     }
+
+    console.log('✅ Seeding completed.')
+
+  } catch (err) {
+    console.error('❌ Critical Error reading seed file:', err)
+    process.exit(1)
   }
-  console.log('Seed data inserted successfully!');
 }
 
 main()
   .catch((e) => {
-    console.error(e);
-    process.exit(1);
+    console.error(e)
+    process.exit(1)
   })
   .finally(async () => {
-    await prisma.$disconnect();
-  });
+    await prisma.$disconnect()
+  })
