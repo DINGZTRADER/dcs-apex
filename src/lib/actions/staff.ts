@@ -144,6 +144,9 @@ export async function getStaffStats() {
     }),
   ])
 
+  console.log(`[DEBUG] Staff Stats - Total: ${total}, Active: ${active}`);
+  console.log(`[DEBUG] Staff by Role:`, JSON.stringify(byRole));
+
   return {
     total,
     active,

@@ -36,23 +36,25 @@ export async function getFinancialPosition() {
   const totalExpenses = expenseStats._sum.amount || 0 // Total expenses
   const netAmount = totalReceivables - totalExpenses // Net financial position
 
+  console.log(`[DEBUG] Financial Position: Receivables=${totalReceivables}, Expenses=${totalExpenses}, Net=${netAmount}`);
+
   return {
     // Receivables (Money In)
     totalReceivables,
     totalExpected, // Expected from fees
     totalCollected, // Collected from fees
     totalOutstanding, // Still owed
-    
+
     // Expenses (Money Out)
     totalExpenses,
-    
+
     // Net Position
     netAmount, // Receivables - Expenses = Net Amount
-    
+
     // Additional metrics
     collectionRate: totalExpected > 0 ? Math.round((totalCollected / totalExpected) * 100) : 0,
     expenseRatio: totalReceivables > 0 ? Math.round((totalExpenses / totalReceivables) * 100) : 0,
-    
+
     // Counts
     paymentCount: paymentStats._count.id || 0,
     expenseCount: expenseStats._count.id || 0,
