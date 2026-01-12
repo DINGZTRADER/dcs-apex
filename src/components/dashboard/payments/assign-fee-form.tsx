@@ -77,11 +77,17 @@ export function AssignFeeForm({ open, onOpenChange, onSuccess, preSelectedStuden
     })
   }, [])
 
+import type { Student } from "@prisma/client"
+
+// ... (rest of the imports)
+
+// ... (rest of the component)
+
   // Search students
   useEffect(() => {
     if (studentSearch.length >= 2) {
       getStudents({ search: studentSearch, limit: 10 }).then((result) => {
-        setStudents(result.data.map((s) => ({
+        setStudents(result.data.map((s: Student) => ({
           id: s.id,
           studentNo: s.studentNo,
           fullName: s.fullName,
@@ -90,6 +96,8 @@ export function AssignFeeForm({ open, onOpenChange, onSuccess, preSelectedStuden
       })
     }
   }, [studentSearch])
+
+// ... (rest of the component)
 
   // Set amount when fee is selected
   useEffect(() => {
