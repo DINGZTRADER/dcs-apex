@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { staffSchema, staffUpdateSchema } from "@/lib/validations"
 import { revalidatePath } from "next/cache"
+import { requireAuth } from "@/lib/auth"
 
 export async function getStaff(params?: {
   search?: string
@@ -15,18 +16,18 @@ export async function getStaff(params?: {
   const skip = (page - 1) * limit
 
   const where: any = {}
-  
+
   if (search) {
     where.OR = [
       { fullName: { contains: search, mode: "insensitive" } },
       { department: { contains: search, mode: "insensitive" } },
     ]
   }
-  
+
   if (role && role !== "all") {
     where.role = role
   }
-  
+
   if (status && status !== "all") {
     where.status = status
   }
@@ -54,6 +55,7 @@ export async function getStaffById(id: string) {
 }
 
 export async function createStaff(formData: FormData) {
+  await requireAuth()
   const raw = {
     fullName: formData.get("fullName") as string,
     role: formData.get("role") as string,
@@ -76,31 +78,32 @@ export async function createStaff(formData: FormData) {
 
   revalidatePath("/dashboard/staff")
   revalidatePath("/dashboard")
-  
+
   return { success: true, data: staff }
 }
 
 export async function updateStaff(id: string, formData: FormData) {
+  await requireAuth()
   const raw: any = {}
-  
+
   const fullName = formData.get("fullName")
   if (fullName) raw.fullName = fullName as string
-  
+
   const role = formData.get("role")
   if (role) raw.role = role as string
-  
+
   const department = formData.get("department")
   if (department !== null) raw.department = department as string || null
-  
+
   const salary = formData.get("salary")
   if (salary) raw.salary = parseInt(salary as string)
-  
+
   const dob = formData.get("dob")
   if (dob !== null) raw.dob = dob as string || null
-  
+
   const startDate = formData.get("startDate")
   if (startDate) raw.startDate = startDate as string
-  
+
   const status = formData.get("status")
   if (status) raw.status = status as string
 
@@ -117,16 +120,17 @@ export async function updateStaff(id: string, formData: FormData) {
 
   revalidatePath("/dashboard/staff")
   revalidatePath("/dashboard")
-  
+
   return { success: true, data: staff }
 }
 
 export async function deleteStaff(id: string) {
+  await requireAuth()
   await prisma.staff.delete({ where: { id } })
-  
+
   revalidatePath("/dashboard/staff")
   revalidatePath("/dashboard")
-  
+
   return { success: true }
 }
 

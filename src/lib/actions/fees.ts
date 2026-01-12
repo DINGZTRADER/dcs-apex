@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { feeStructureSchema, studentFeeSchema } from "@/lib/validations"
 import { revalidatePath } from "next/cache"
+import { requireAuth } from "@/lib/auth"
 
 // Fee Structure Actions
 export async function getFeeStructures(params?: {
@@ -60,6 +61,7 @@ export async function getFeeStructureById(id: string) {
 }
 
 export async function createFeeStructure(formData: FormData) {
+  await requireAuth()
   const programVal = formData.get("program") as string
   const yearVal = formData.get("year") as string
   const raw = {
@@ -86,6 +88,7 @@ export async function createFeeStructure(formData: FormData) {
 }
 
 export async function updateFeeStructure(id: string, formData: FormData) {
+  await requireAuth()
   const raw: any = {}
 
   const name = formData.get("name")
@@ -126,6 +129,7 @@ export async function updateFeeStructure(id: string, formData: FormData) {
 }
 
 export async function deleteFeeStructure(id: string) {
+  await requireAuth()
   await prisma.feeStructure.delete({ where: { id } })
 
   revalidatePath("/dashboard/payments")
@@ -185,6 +189,7 @@ export async function getStudentFees(params?: {
 }
 
 export async function assignFeeToStudent(formData: FormData) {
+  await requireAuth()
   const raw = {
     studentId: formData.get("studentId") as string,
     feeStructureId: formData.get("feeStructureId") as string,
@@ -217,6 +222,7 @@ export async function assignFeesToMultipleStudents(
   academicYear: string,
   semester: string
 ) {
+  await requireAuth()
   const feeStructure = await prisma.feeStructure.findUnique({
     where: { id: feeStructureId },
   })

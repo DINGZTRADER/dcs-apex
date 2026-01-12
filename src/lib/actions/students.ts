@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { studentSchema, studentUpdateSchema } from "@/lib/validations"
 import { revalidatePath } from "next/cache"
+import { requireAuth } from "@/lib/auth"
 
 export async function getStudents(params?: {
   search?: string
@@ -16,18 +17,18 @@ export async function getStudents(params?: {
   const skip = (page - 1) * limit
 
   const where: any = {}
-  
+
   if (search) {
     where.OR = [
       { fullName: { contains: search, mode: "insensitive" } },
       { studentNo: { contains: search, mode: "insensitive" } },
     ]
   }
-  
+
   if (program && program !== "all") {
     where.program = program
   }
-  
+
   if (status && status !== "all") {
     where.status = status
   }
@@ -59,6 +60,7 @@ export async function getStudentById(id: string) {
 }
 
 export async function createStudent(formData: FormData) {
+  await requireAuth()
   const raw = {
     studentNo: formData.get("studentNo") as string,
     fullName: formData.get("fullName") as string,
@@ -75,25 +77,26 @@ export async function createStudent(formData: FormData) {
 
   revalidatePath("/dashboard/students")
   revalidatePath("/dashboard")
-  
+
   return { success: true, data: student }
 }
 
 export async function updateStudent(id: string, formData: FormData) {
+  await requireAuth()
   const raw: any = {}
-  
+
   const studentNo = formData.get("studentNo")
   if (studentNo) raw.studentNo = studentNo as string
-  
+
   const fullName = formData.get("fullName")
   if (fullName) raw.fullName = fullName as string
-  
+
   const program = formData.get("program")
   if (program) raw.program = program as string
-  
+
   const year = formData.get("year")
   if (year) raw.year = parseInt(year as string)
-  
+
   const status = formData.get("status")
   if (status) raw.status = status as string
 
@@ -106,16 +109,17 @@ export async function updateStudent(id: string, formData: FormData) {
 
   revalidatePath("/dashboard/students")
   revalidatePath("/dashboard")
-  
+
   return { success: true, data: student }
 }
 
 export async function deleteStudent(id: string) {
+  await requireAuth()
   await prisma.student.delete({ where: { id } })
-  
+
   revalidatePath("/dashboard/students")
   revalidatePath("/dashboard")
-  
+
   return { success: true }
 }
 

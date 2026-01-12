@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { paymentSchema } from "@/lib/validations"
 import { revalidatePath } from "next/cache"
+import { requireAuth } from "@/lib/auth"
 
 // Generate unique payment number
 async function generatePaymentNo(): Promise<string> {
@@ -97,6 +98,8 @@ export async function getPaymentById(id: string) {
 }
 
 export async function createPayment(formData: FormData) {
+  await requireAuth()
+
   const raw = {
     studentId: formData.get("studentId") as string,
     studentFeeId: (formData.get("studentFeeId") as string) || null,
@@ -108,50 +111,60 @@ export async function createPayment(formData: FormData) {
   }
 
   const validated = paymentSchema.parse(raw)
-  const paymentNo = await generatePaymentNo()
 
-  const payment = await prisma.payment.create({
-    data: {
-      ...validated,
-      paymentNo,
-    },
-  })
+  // Use interactive transaction to ensure data integrity
+  const payment = await prisma.$transaction(async (tx) => {
+    // Generate ID inside or outside (outside is fine if we handle collision, inside matches logic better)
+    // We kept generatePaymentNo outside to avoid complex passing of tx, but technically it reads DB. 
+    // For now we assume optimistic ID gen.
 
-  // If payment is linked to a student fee, update the fee balance
-  if (validated.studentFeeId) {
-    const studentFee = await prisma.studentFee.findUnique({
-      where: { id: validated.studentFeeId },
+    const paymentNo = await generatePaymentNo()
+
+    const payment = await tx.payment.create({
+      data: {
+        ...validated,
+        paymentNo,
+      },
     })
 
-    if (studentFee) {
-      // Validate payment doesn't exceed balance (with small tolerance for rounding)
-      const remainingBalance = studentFee.balance
-      if (validated.amount > remainingBalance + 100) { // Allow 100 UGX tolerance for rounding
-        throw new Error(
-          `Payment amount (${validated.amount}) exceeds remaining balance (${remainingBalance}). Maximum allowed: ${remainingBalance}`
-        )
-      }
-
-      const newAmountPaid = studentFee.amountPaid + validated.amount
-      const newBalance = Math.max(0, studentFee.amountDue - newAmountPaid) // Prevent negative balance
-      let newStatus: "PENDING" | "PARTIAL" | "PAID" | "OVERDUE" | "WAIVED" = "PENDING"
-
-      if (newBalance <= 0) {
-        newStatus = "PAID"
-      } else if (newAmountPaid > 0) {
-        newStatus = "PARTIAL"
-      }
-
-      await prisma.studentFee.update({
+    // If payment is linked to a student fee, update the fee balance
+    if (validated.studentFeeId) {
+      // Lock/Get the fee within transaction
+      const studentFee = await tx.studentFee.findUnique({
         where: { id: validated.studentFeeId },
-        data: {
-          amountPaid: newAmountPaid,
-          balance: newBalance,
-          status: newStatus,
-        },
       })
+
+      if (studentFee) {
+        // Validate payment doesn't exceed balance (with small tolerance for rounding)
+        const remainingBalance = studentFee.balance
+        if (validated.amount > remainingBalance + 100) { // Allow 100 UGX tolerance for rounding
+          throw new Error(
+            `Payment amount (${validated.amount}) exceeds remaining balance (${remainingBalance}). Maximum allowed: ${remainingBalance}`
+          )
+        }
+
+        const newAmountPaid = studentFee.amountPaid + validated.amount
+        const newBalance = Math.max(0, studentFee.amountDue - newAmountPaid) // Prevent negative balance
+        let newStatus: "PENDING" | "PARTIAL" | "PAID" | "OVERDUE" | "WAIVED" = "PENDING"
+
+        if (newBalance <= 0) {
+          newStatus = "PAID"
+        } else if (newAmountPaid > 0) {
+          newStatus = "PARTIAL"
+        }
+
+        await tx.studentFee.update({
+          where: { id: validated.studentFeeId },
+          data: {
+            amountPaid: newAmountPaid,
+            balance: newBalance,
+            status: newStatus,
+          },
+        })
+      }
     }
-  }
+    return payment
+  })
 
   revalidatePath("/dashboard/payments")
   revalidatePath("/dashboard/students")
@@ -161,36 +174,43 @@ export async function createPayment(formData: FormData) {
 }
 
 export async function deletePayment(id: string) {
-  const payment = await prisma.payment.findUnique({
-    where: { id },
-    include: { studentFee: true },
-  })
+  await requireAuth()
 
-  if (!payment) {
-    throw new Error("Payment not found")
-  }
+  await prisma.$transaction(async (tx) => {
+    const payment = await tx.payment.findUnique({
+      where: { id },
+      include: { studentFee: true },
+    })
 
-  // Reverse the payment from student fee if linked
-  if (payment.studentFeeId && payment.studentFee) {
-    const newAmountPaid = payment.studentFee.amountPaid - payment.amount
-    const newBalance = payment.studentFee.amountDue - newAmountPaid
-    let newStatus: "PENDING" | "PARTIAL" | "PAID" | "OVERDUE" | "WAIVED" = "PENDING"
-
-    if (newAmountPaid > 0 && newBalance > 0) {
-      newStatus = "PARTIAL"
+    if (!payment) {
+      throw new Error("Payment not found")
     }
 
-    await prisma.studentFee.update({
-      where: { id: payment.studentFeeId },
-      data: {
-        amountPaid: Math.max(0, newAmountPaid),
-        balance: newBalance,
-        status: newStatus,
-      },
-    })
-  }
+    // Reverse the payment from student fee if linked
+    if (payment.studentFeeId && payment.studentFee) {
+      const newAmountPaid = payment.studentFee.amountPaid - payment.amount
+      const newBalance = payment.studentFee.amountDue - newAmountPaid
+      let newStatus: "PENDING" | "PARTIAL" | "PAID" | "OVERDUE" | "WAIVED" = "PENDING"
 
-  await prisma.payment.delete({ where: { id } })
+      if (newAmountPaid > 0 && newBalance > 0) {
+        newStatus = "PARTIAL"
+      }
+
+      // If we are reversing into a positive balance, check overdue logic? 
+      // For now keep simple status reversal.
+
+      await tx.studentFee.update({
+        where: { id: payment.studentFeeId },
+        data: {
+          amountPaid: Math.max(0, newAmountPaid),
+          balance: newBalance,
+          status: newStatus,
+        },
+      })
+    }
+
+    await tx.payment.delete({ where: { id } })
+  })
 
   revalidatePath("/dashboard/payments")
   revalidatePath("/dashboard/students")

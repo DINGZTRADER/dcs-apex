@@ -3,6 +3,7 @@
 import { useState, useTransition, useEffect } from "react"
 import { toast } from "sonner"
 import { Loader2, Search } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -21,9 +22,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+
 import { assignFeeToStudent, getFeeStructures } from "@/lib/actions/fees"
 import { getStudents } from "@/lib/actions/students"
 import { formatCurrency } from "@/lib/utils"
+
+import type { Student } from "@prisma/client"
 
 interface AssignFeeFormProps {
   open: boolean
@@ -61,14 +65,21 @@ const semesters = [
   { value: "SEMESTER_3", label: "Semester 3" },
 ]
 
-export function AssignFeeForm({ open, onOpenChange, onSuccess, preSelectedStudentId }: AssignFeeFormProps) {
+export function AssignFeeForm({
+  open,
+  onOpenChange,
+  onSuccess,
+  preSelectedStudentId,
+}: AssignFeeFormProps) {
   const [isPending, startTransition] = useTransition()
   const [students, setStudents] = useState<StudentOption[]>([])
   const [studentSearch, setStudentSearch] = useState("")
-  const [selectedStudent, setSelectedStudent] = useState<string>(preSelectedStudentId || "")
+  const [selectedStudent, setSelectedStudent] = useState<string>(
+    preSelectedStudentId || ""
+  )
   const [feeStructures, setFeeStructures] = useState<FeeStructure[]>([])
-  const [selectedFee, setSelectedFee] = useState<string>("")
-  const [customAmount, setCustomAmount] = useState<string>("")
+  const [selectedFee, setSelectedFee] = useState("")
+  const [customAmount, setCustomAmount] = useState("")
 
   // Load fee structures
   useEffect(() => {
@@ -77,27 +88,21 @@ export function AssignFeeForm({ open, onOpenChange, onSuccess, preSelectedStuden
     })
   }, [])
 
-import type { Student } from "@prisma/client"
-
-// ... (rest of the imports)
-
-// ... (rest of the component)
-
   // Search students
   useEffect(() => {
     if (studentSearch.length >= 2) {
       getStudents({ search: studentSearch, limit: 10 }).then((result) => {
-        setStudents(result.data.map((s: Student) => ({
-          id: s.id,
-          studentNo: s.studentNo,
-          fullName: s.fullName,
-          program: s.program,
-        })))
+        setStudents(
+          result.data.map((s: Student) => ({
+            id: s.id,
+            studentNo: s.studentNo,
+            fullName: s.fullName,
+            program: s.program,
+          }))
+        )
       })
     }
   }, [studentSearch])
-
-// ... (rest of the component)
 
   // Set amount when fee is selected
   useEffect(() => {
@@ -132,7 +137,9 @@ import type { Student } from "@prisma/client"
     })
   }
 
-  const selectedFeeDetails = feeStructures.find((f) => f.id === selectedFee)
+  const selectedFeeDetails = feeStructures.find(
+    (f) => f.id === selectedFee
+  )
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -157,6 +164,7 @@ import type { Student } from "@prisma/client"
                 className="pl-9"
               />
             </div>
+
             {students.length > 0 && !selectedStudent && (
               <div className="border rounded-lg max-h-40 overflow-y-auto">
                 {students.map((student) => (
@@ -165,17 +173,24 @@ import type { Student } from "@prisma/client"
                     type="button"
                     onClick={() => {
                       setSelectedStudent(student.id)
-                      setStudentSearch(`${student.studentNo} - ${student.fullName}`)
+                      setStudentSearch(
+                        `${student.studentNo} - ${student.fullName}`
+                      )
                       setStudents([])
                     }}
                     className="w-full px-3 py-2 text-left text-sm hover:bg-muted flex justify-between items-center"
                   >
-                    <span className="font-medium">{student.fullName}</span>
-                    <span className="text-muted-foreground">{student.studentNo}</span>
+                    <span className="font-medium">
+                      {student.fullName}
+                    </span>
+                    <span className="text-muted-foreground">
+                      {student.studentNo}
+                    </span>
                   </button>
                 ))}
               </div>
             )}
+
             {selectedStudent && (
               <Button
                 type="button"
@@ -191,7 +206,7 @@ import type { Student } from "@prisma/client"
             )}
           </div>
 
-          {/* Fee Structure Selection */}
+          {/* Fee Structure */}
           <div className="space-y-2">
             <Label>Fee Structure</Label>
             <Select value={selectedFee} onValueChange={setSelectedFee}>
@@ -201,21 +216,27 @@ import type { Student } from "@prisma/client"
               <SelectContent>
                 {feeStructures.map((fee) => (
                   <SelectItem key={fee.id} value={fee.id}>
-                    {fee.name} - {formatCurrency(fee.amount)}
+                    {fee.name} – {formatCurrency(fee.amount)}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
+
             {selectedFeeDetails && (
               <div className="text-xs text-muted-foreground p-2 bg-muted rounded-lg">
                 <p>Type: {selectedFeeDetails.feeType}</p>
-                <p>Academic Year: {selectedFeeDetails.academicYear}</p>
-                <p>Semester: {selectedFeeDetails.semester.replace("_", " ")}</p>
+                <p>
+                  Academic Year: {selectedFeeDetails.academicYear}
+                </p>
+                <p>
+                  Semester:{" "}
+                  {selectedFeeDetails.semester.replace("_", " ")}
+                </p>
               </div>
             )}
           </div>
 
-          {/* Amount (can be customized) */}
+          {/* Amount */}
           <div className="space-y-2">
             <Label htmlFor="amountDue">Amount Due (UGX)</Label>
             <Input
@@ -224,12 +245,8 @@ import type { Student } from "@prisma/client"
               type="number"
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
-              placeholder="Enter amount"
               required
             />
-            <p className="text-xs text-muted-foreground">
-              You can adjust the amount for this specific student if needed.
-            </p>
           </div>
 
           {/* Due Date */}
@@ -239,15 +256,24 @@ import type { Student } from "@prisma/client"
               id="dueDate"
               name="dueDate"
               type="date"
-              defaultValue={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
+              defaultValue={new Date(
+                Date.now() + 30 * 24 * 60 * 60 * 1000
+              )
+                .toISOString()
+                .split("T")[0]}
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="academicYear">Academic Year</Label>
-              <Select name="academicYear" defaultValue={selectedFeeDetails?.academicYear || academicYears[0]}>
+              <Label>Academic Year</Label>
+              <Select
+                name="academicYear"
+                defaultValue={
+                  selectedFeeDetails?.academicYear || academicYears[0]
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select year" />
                 </SelectTrigger>
@@ -262,8 +288,13 @@ import type { Student } from "@prisma/client"
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="semester">Semester</Label>
-              <Select name="semester" defaultValue={selectedFeeDetails?.semester || "SEMESTER_1"}>
+              <Label>Semester</Label>
+              <Select
+                name="semester"
+                defaultValue={
+                  selectedFeeDetails?.semester || "SEMESTER_1"
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select semester" />
                 </SelectTrigger>
@@ -286,8 +317,13 @@ import type { Student } from "@prisma/client"
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isPending || !selectedStudent || !selectedFee}>
-              {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            <Button
+              type="submit"
+              disabled={isPending || !selectedStudent || !selectedFee}
+            >
+              {isPending && (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
               Assign Fee
             </Button>
           </DialogFooter>

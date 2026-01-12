@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { expenseSchema, expenseUpdateSchema } from "@/lib/validations"
 import { revalidatePath } from "next/cache"
+import { requireAuth } from "@/lib/auth"
 
 export async function getExpenses(params?: {
   search?: string
@@ -15,18 +16,18 @@ export async function getExpenses(params?: {
   const skip = (page - 1) * limit
 
   const where: any = {}
-  
+
   if (search) {
     where.OR = [
       { description: { contains: search, mode: "insensitive" } },
       { category: { contains: search, mode: "insensitive" } },
     ]
   }
-  
+
   if (category && category !== "all") {
     where.category = category
   }
-  
+
   if (status && status !== "all") {
     where.status = status
   }
@@ -54,6 +55,7 @@ export async function getExpenseById(id: string) {
 }
 
 export async function createExpense(formData: FormData) {
+  await requireAuth()
   const raw = {
     category: formData.get("category") as string,
     description: formData.get("description") as string,
@@ -69,22 +71,23 @@ export async function createExpense(formData: FormData) {
 
   revalidatePath("/dashboard/finance")
   revalidatePath("/dashboard")
-  
+
   return { success: true, data: expense }
 }
 
 export async function updateExpense(id: string, formData: FormData) {
+  await requireAuth()
   const raw: any = {}
-  
+
   const category = formData.get("category")
   if (category) raw.category = category as string
-  
+
   const description = formData.get("description")
   if (description) raw.description = description as string
-  
+
   const amount = formData.get("amount")
   if (amount) raw.amount = parseInt(amount as string)
-  
+
   const status = formData.get("status")
   if (status) raw.status = status as string
 
@@ -97,16 +100,17 @@ export async function updateExpense(id: string, formData: FormData) {
 
   revalidatePath("/dashboard/finance")
   revalidatePath("/dashboard")
-  
+
   return { success: true, data: expense }
 }
 
 export async function deleteExpense(id: string) {
+  await requireAuth()
   await prisma.expense.delete({ where: { id } })
-  
+
   revalidatePath("/dashboard/finance")
   revalidatePath("/dashboard")
-  
+
   return { success: true }
 }
 
