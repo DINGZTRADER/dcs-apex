@@ -23,7 +23,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   session: null,
   loading: true,
-  signOut: async () => {},
+  signOut: async () => { },
 })
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -33,13 +33,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Get initial session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session)
-      if (session?.user) {
-        await fetchUserRole(session.user)
+    const initAuth = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        setSession(session)
+        if (session?.user) {
+          try {
+            await fetchUserRole(session.user)
+          } catch (e) {
+            console.error("Fetch role failed", e)
+          }
+        }
+      } catch (e) {
+        console.error("Init auth failed", e)
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
-    })
+    }
+
+    initAuth()
 
     // Listen for auth changes
     const {
@@ -47,7 +59,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session)
       if (session?.user) {
-        await fetchUserRole(session.user)
+        try {
+          await fetchUserRole(session.user)
+        } catch (e) {
+          console.error("Auth change role fetch failed", e)
+        }
       } else {
         setUser(null)
       }
