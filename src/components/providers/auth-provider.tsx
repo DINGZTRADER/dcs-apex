@@ -76,41 +76,56 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function fetchUserRole(authUser: User) {
     console.log("Fetching role for user:", authUser.id, authUser.email)
 
-    // First try by ID (most secure/correct)
-    let { data, error } = await supabase
-      .from("User")
-      .select("role")
-      .eq("id", authUser.id) // Try ID first
-      .single()
+    // Create a timeout promise that rejects after 5 seconds
+    const timeout = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error("Request timed out")), 5000);
+    });
 
-    // If ID match fails (e.g. legacy data), try email
-    if ((error || !data) && authUser.email) {
-      console.log("ID match failed, trying email fallback...")
-      const emailResult = await supabase
-        .from("User")
-        .select("role")
-        .eq("email", authUser.email)
-        .single()
+    try {
+      // Wrap the DB calls in a race with the timeout
+      await Promise.race([
+        (async () => {
+          // First try by ID (most secure/correct)
+          let { data, error } = await supabase
+            .from("User")
+            .select("role")
+            .eq("id", authUser.id) // Try ID first
+            .single()
 
-      data = emailResult.data
-      error = emailResult.error
+          // If ID match fails (e.g. legacy data), try email
+          if ((error || !data) && authUser.email) {
+            console.log("ID match failed, trying email fallback...")
+            const emailResult = await supabase
+              .from("User")
+              .select("role")
+              .eq("email", authUser.email)
+              .single()
+
+            data = emailResult.data
+            error = emailResult.error
+          }
+
+          if (error || !data) {
+            console.error("Error fetching user role:", error)
+            console.log("User details:", authUser)
+            setUser(null)
+            return
+          }
+
+          console.log("Role found:", data.role)
+
+          setUser({
+            id: authUser.id,
+            email: authUser.email!,
+            role: data.role as UserRole,
+          })
+        })(),
+        timeout
+      ]);
+    } catch (error) {
+      console.error("Fetch user role timed out or failed:", error);
+      setUser(null);
     }
-
-    if (error || !data) {
-      console.error("Error fetching user role:", error)
-      // Debugging assistance for the user
-      console.log("User details:", authUser)
-      setUser(null)
-      return
-    }
-
-    console.log("Role found:", data.role)
-
-    setUser({
-      id: authUser.id,
-      email: authUser.email!,
-      role: data.role as UserRole,
-    })
   }
 
   async function signOut() {
