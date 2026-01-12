@@ -61,7 +61,7 @@ export function StatCard({
               <p className="text-sm font-medium text-muted-foreground">
                 {title}
               </p>
-              <p className="text-3xl font-bold tracking-tight font-heading">
+              <p className="text-2xl sm:text-3xl font-bold tracking-tight font-heading truncate" title={value.toString()}>
                 {value}
               </p>
               {description && (
@@ -80,6 +80,6 @@ export function StatCard({
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </motion.div >
   )
 }

@@ -30,14 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${plusJakartaSans.variable} font-sans`}>
+      <body className={`${inter.variable} ${plusJakartaSans.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider defaultTheme="system" storageKey="dcs-ui-theme">
           <QueryProvider>
             <AuthProvider>
               {children}
-              <Toaster 
-                position="top-right" 
-                richColors 
+              <Toaster
+                position="top-right"
+                richColors
                 closeButton
                 toastOptions={{
                   duration: 4000,
