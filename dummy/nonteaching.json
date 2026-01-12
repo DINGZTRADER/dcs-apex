@@ -1,0 +1,12 @@
+{
+  "model": "Staff",
+  "data": {
+    "fullName": "Namagembe Prossy",
+    "role": "ADMIN",
+    "department": "Registry",
+    "salary": 2800000,
+    "dob": "1990-11-05T00:00:00.000Z",
+    "startDate": "2018-06-15T00:00:00.000Z",
+    "status": "ACTIVE"
+  }
+}

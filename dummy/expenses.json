@@ -1,0 +1,82 @@
+[
+  {
+    "expense_id": "EXP0001",
+    "category": "salaries",
+    "amount_ugx": 9200000,
+    "date": "2025-01-31",
+    "department": "Faculty of Science",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0002",
+    "category": "salaries",
+    "amount_ugx": 6400000,
+    "date": "2025-01-31",
+    "department": "Faculty of Humanities",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0003",
+    "category": "salaries",
+    "amount_ugx": 2800000,
+    "date": "2025-01-31",
+    "department": "Facilities Management",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0004",
+    "category": "utilities",
+    "amount_ugx": 12450000,
+    "date": "2025-01-28",
+    "department": "Facilities Management",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0005",
+    "category": "maintenance",
+    "amount_ugx": 4800000,
+    "date": "2025-01-15",
+    "department": "Facilities Management",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0006",
+    "category": "academic_supplies",
+    "amount_ugx": 3200000,
+    "date": "2025-01-10",
+    "department": "Faculty of Science",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0007",
+    "category": "other",
+    "amount_ugx": 1500000,
+    "date": "2025-01-20",
+    "department": "Finance Department",
+    "payment_status": "Invoiced"
+  },
+  {
+    "expense_id": "EXP0008",
+    "category": "salaries",
+    "amount_ugx": 14500000,
+    "date": "2025-01-31",
+    "department": "Faculty of Engineering",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0009",
+    "category": "utilities",
+    "amount_ugx": 3800000,
+    "date": "2025-01-28",
+    "department": "Facilities Management",
+    "payment_status": "Paid"
+  },
+  {
+    "expense_id": "EXP0010",
+    "category": "maintenance",
+    "amount_ugx": 22000000,
+    "date": "2025-01-05",
+    "department": "Facilities Management",
+    "payment_status": "Pending"
+  }
+]

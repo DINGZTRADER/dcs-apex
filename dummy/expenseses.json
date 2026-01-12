@@ -1,0 +1,9 @@
+{
+  "model": "Expense",
+  "data": {
+    "category": "Utilities",
+    "description": "Electricity bill for main campus - December 2025",
+    "amount": 3200000,
+    "status": "APPROVED"
+  }
+}

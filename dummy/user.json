@@ -1,0 +1,16 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "email": "director@uguniversity.ac.ug",
+      "password": "hashedpassword123",
+      "role": "DIRECTOR",
+      "isActive": true
+    }
+  },
+
+  {{STUDENTS}},
+  {{TEACHERS}},
+  {{STAFF}},
+  {{EXPENSES}}
+]

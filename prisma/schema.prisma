@@ -1,0 +1,186 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  DIRECTOR
+  VC
+  FINANCE
+  HR
+  STORE
+}
+
+enum StaffRole {
+  LECTURER
+  SECURITY
+  CLEANER
+  ADMIN
+  OTHER
+}
+
+enum StaffStatus {
+  ACTIVE
+  SUSPENDED
+  EXITED
+}
+
+enum StudentStatus {
+  ACTIVE
+  DEFERRED
+  DROPPED
+}
+
+enum ExpenseStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  PAID
+}
+
+enum FeeType {
+  TUITION
+  ACCOMMODATION
+  LIBRARY
+  LABORATORY
+  REGISTRATION
+  EXAMINATION
+  SCHOOL_TRIP
+  SPORTS
+  MEDICAL
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIAL
+  PAID
+  OVERDUE
+  WAIVED
+}
+
+enum PaymentMethod {
+  CASH
+  BANK_TRANSFER
+  MOBILE_MONEY
+  CHEQUE
+  CARD
+}
+
+enum Semester {
+  SEMESTER_1
+  SEMESTER_2
+  SEMESTER_3
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      UserRole
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Staff {
+  id         String      @id @default(uuid())
+  fullName   String
+  role       StaffRole
+  department String?
+  salary     Int
+  dob        DateTime?
+  startDate  DateTime
+  status     StaffStatus @default(ACTIVE)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Student {
+  id        String        @id @default(uuid())
+  studentNo String        @unique
+  fullName  String
+  program   String
+  year      Int
+  status    StudentStatus @default(ACTIVE)
+  createdAt DateTime      @default(now())
+  
+  // Relations
+  feeAssignments StudentFee[]
+  payments       Payment[]
+}
+
+model FeeStructure {
+  id          String   @id @default(uuid())
+  name        String
+  feeType     FeeType
+  amount      Int
+  program     String?  // If null, applies to all programs
+  year        Int?     // If null, applies to all years
+  semester    Semester
+  academicYear String  // e.g., "2025/2026"
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  studentFees StudentFee[]
+}
+
+model StudentFee {
+  id             String        @id @default(uuid())
+  studentId      String
+  feeStructureId String
+  amountDue      Int
+  amountPaid     Int           @default(0)
+  balance        Int           // Computed: amountDue - amountPaid
+  status         PaymentStatus @default(PENDING)
+  dueDate        DateTime
+  academicYear   String
+  semester       Semester
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  
+  // Relations
+  student      Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  feeStructure FeeStructure @relation(fields: [feeStructureId], references: [id])
+  payments     Payment[]
+  
+  @@unique([studentId, feeStructureId, academicYear, semester])
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  paymentNo     String        @unique // e.g., "PAY-2025-00001"
+  studentId     String
+  studentFeeId  String?       // Optional - can be a general payment
+  amount        Int
+  paymentMethod PaymentMethod
+  reference     String?       // Bank reference, mobile money code, etc.
+  receiptNo     String?
+  paidAt        DateTime      @default(now())
+  notes         String?
+  createdAt     DateTime      @default(now())
+  
+  // Relations
+  student    Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentFee StudentFee? @relation(fields: [studentFeeId], references: [id])
+}
+
+model Expense {
+  id          String        @id @default(uuid())
+  category    String
+  description String
+  amount      Int
+  status      ExpenseStatus @default(PENDING)
+  createdAt   DateTime      @default(now())
+}

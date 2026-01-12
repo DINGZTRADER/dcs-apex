@@ -1,0 +1,11 @@
+[
+  {
+    "expense_id": "EXP0001",
+    "category": "salaries",
+    "amount_ugx": 8500000,
+    "date": "2025-01-31",
+    "department": "Faculty of Science",
+    "payment_status": "Paid"
+  },
+  ...
+]

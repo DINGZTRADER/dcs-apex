@@ -1,0 +1,12 @@
+{
+  "model": "Staff",
+  "data": {
+    "fullName": "Dr. Okello David",
+    "role": "LECTURER",
+    "department": "Faculty of Engineering",
+    "salary": 4800000,
+    "dob": "1982-07-22T00:00:00.000Z",
+    "startDate": "2015-02-01T00:00:00.000Z",
+    "status": "ACTIVE"
+  }
+}

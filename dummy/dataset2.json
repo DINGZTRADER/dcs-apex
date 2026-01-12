@@ -1,0 +1,1236 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "email": "director@uguniversity.ac.ug",
+      "password": "hashedpassword123",
+      "role": "DIRECTOR",
+      "isActive": true
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S001",
+      "fullName": "Nakato Sarah",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S002",
+      "fullName": "Mugisha Robert",
+      "program": "Bachelor of Arts in Education",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S003",
+      "fullName": "Namagembe Prossy",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S004",
+      "fullName": "Okello David",
+      "program": "Bachelor of Business Administration",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S005",
+      "fullName": "Nalweyiso Annet",
+      "program": "Bachelor of Laws",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S006",
+      "fullName": "Kato Moses",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S007",
+      "fullName": "Nabaggala Gladys",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S008",
+      "fullName": "Ssebunya John",
+      "program": "Bachelor of Environmental Health",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S009",
+      "fullName": "Mbabazi Esther",
+      "program": "Bachelor of Nursing Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S010",
+      "fullName": "Nsamba Judith",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S011",
+      "fullName": "Tumwine Patience",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S012",
+      "fullName": "Wasswa Rebecca",
+      "program": "Bachelor of Arts in Education",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S013",
+      "fullName": "Ssentongo Mary",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 5,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S014",
+      "fullName": "Bbosa Isaac",
+      "program": "Bachelor of Business Administration",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S015",
+      "fullName": "Ssekitto Florence",
+      "program": "Bachelor of Laws",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S016",
+      "fullName": "Nsubuga Samuel",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S017",
+      "fullName": "Lwanga Ruth",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S018",
+      "fullName": "Kyambadde Peter",
+      "program": "Bachelor of Environmental Health",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S019",
+      "fullName": "Mukasa Grace",
+      "program": "Bachelor of Nursing Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S020",
+      "fullName": "Ssebatta Daniel",
+      "program": "Diploma in Information Technology",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S021",
+      "fullName": "Nakibuuka Beatrice",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S022",
+      "fullName": "Ssempijja Joseph",
+      "program": "Bachelor of Arts in Education",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S023",
+      "fullName": "Ahebwa Christine",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S024",
+      "fullName": "Byamugisha Andrew",
+      "program": "Bachelor of Business Administration",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S025",
+      "fullName": "Kabonesa Victoria",
+      "program": "Bachelor of Laws",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S026",
+      "fullName": "Nabukenya Timothy",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S027",
+      "fullName": "Turyasiima Helen",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S028",
+      "fullName": "Nakabugo George",
+      "program": "Bachelor of Environmental Health",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S029",
+      "fullName": "Nalubega Alice",
+      "program": "Bachelor of Nursing Science",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S030",
+      "fullName": "Nakimuli Brian",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S031",
+      "fullName": "Nakawunde Caroline",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S032",
+      "fullName": "Nakazibwe Martin",
+      "program": "Bachelor of Arts in Education",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S033",
+      "fullName": "Mugisha Sarah",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S034",
+      "fullName": "Okello Prossy",
+      "program": "Bachelor of Business Administration",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S035",
+      "fullName": "Namagembe Robert",
+      "program": "Bachelor of Laws",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S036",
+      "fullName": "Kato Annet",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S037",
+      "fullName": "Ssebunya Gladys",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S038",
+      "fullName": "Mbabazi Esther",
+      "program": "Bachelor of Environmental Health",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S039",
+      "fullName": "Nsamba Patience",
+      "program": "Bachelor of Nursing Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S040",
+      "fullName": "Tumwine Rebecca",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S041",
+      "fullName": "Wasswa Mary",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S042",
+      "fullName": "Ssentongo John",
+      "program": "Bachelor of Arts in Education",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S043",
+      "fullName": "Bbosa Florence",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 5,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S044",
+      "fullName": "Ssekitto Samuel",
+      "program": "Bachelor of Business Administration",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S045",
+      "fullName": "Nsubuga Ruth",
+      "program": "Bachelor of Laws",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S046",
+      "fullName": "Lwanga Peter",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S047",
+      "fullName": "Kyambadde Grace",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S048",
+      "fullName": "Mukasa Daniel",
+      "program": "Bachelor of Environmental Health",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S049",
+      "fullName": "Ssebatta Beatrice",
+      "program": "Bachelor of Nursing Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S050",
+      "fullName": "Nakibuuka Joseph",
+      "program": "Diploma in Information Technology",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S051",
+      "fullName": "Ssempijja Christine",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S052",
+      "fullName": "Ahebwa Andrew",
+      "program": "Bachelor of Arts in Education",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S053",
+      "fullName": "Byamugisha Victoria",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S054",
+      "fullName": "Kabonesa Timothy",
+      "program": "Bachelor of Business Administration",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S055",
+      "fullName": "Nabukenya Helen",
+      "program": "Bachelor of Laws",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S056",
+      "fullName": "Turyasiima George",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S057",
+      "fullName": "Nakabugo Alice",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S058",
+      "fullName": "Nalubega Brian",
+      "program": "Bachelor of Environmental Health",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S059",
+      "fullName": "Nakimuli Caroline",
+      "program": "Bachelor of Nursing Science",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S060",
+      "fullName": "Nakawunde Martin",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S061",
+      "fullName": "Nakazibwe Sarah",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S062",
+      "fullName": "Mugisha Prossy",
+      "program": "Bachelor of Arts in Education",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S063",
+      "fullName": "Okello Robert",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S064",
+      "fullName": "Namagembe Annet",
+      "program": "Bachelor of Business Administration",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S065",
+      "fullName": "Kato Gladys",
+      "program": "Bachelor of Laws",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S066",
+      "fullName": "Ssebunya Esther",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S067",
+      "fullName": "Mbabazi Patience",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S068",
+      "fullName": "Nsamba Rebecca",
+      "program": "Bachelor of Environmental Health",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S069",
+      "fullName": "Tumwine Mary",
+      "program": "Bachelor of Nursing Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S070",
+      "fullName": "Wasswa John",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S071",
+      "fullName": "Ssentongo Florence",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S072",
+      "fullName": "Bbosa Samuel",
+      "program": "Bachelor of Arts in Education",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S073",
+      "fullName": "Ssekitto Ruth",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 5,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S074",
+      "fullName": "Nsubuga Peter",
+      "program": "Bachelor of Business Administration",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S075",
+      "fullName": "Lwanga Grace",
+      "program": "Bachelor of Laws",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S076",
+      "fullName": "Kyambadde Daniel",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S077",
+      "fullName": "Mukasa Beatrice",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S078",
+      "fullName": "Ssebatta Joseph",
+      "program": "Bachelor of Environmental Health",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S079",
+      "fullName": "Nakibuuka Christine",
+      "program": "Bachelor of Nursing Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S080",
+      "fullName": "Ssempijja Andrew",
+      "program": "Diploma in Information Technology",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S081",
+      "fullName": "Ahebwa Victoria",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S082",
+      "fullName": "Byamugisha Timothy",
+      "program": "Bachelor of Arts in Education",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S083",
+      "fullName": "Kabonesa Helen",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S084",
+      "fullName": "Nabukenya George",
+      "program": "Bachelor of Business Administration",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S085",
+      "fullName": "Turyasiima Alice",
+      "program": "Bachelor of Laws",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S086",
+      "fullName": "Nakabugo Brian",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S087",
+      "fullName": "Nalubega Caroline",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S088",
+      "fullName": "Nakimuli Martin",
+      "program": "Bachelor of Environmental Health",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S089",
+      "fullName": "Nakawunde Sarah",
+      "program": "Bachelor of Nursing Science",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S090",
+      "fullName": "Nakazibwe Prossy",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S091",
+      "fullName": "Mugisha Robert",
+      "program": "Bachelor of Science in Computer Science",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S092",
+      "fullName": "Okello Annet",
+      "program": "Bachelor of Arts in Education",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S093",
+      "fullName": "Namagembe Gladys",
+      "program": "Bachelor of Medicine and Surgery",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S094",
+      "fullName": "Kato Esther",
+      "program": "Bachelor of Business Administration",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S095",
+      "fullName": "Ssebunya Patience",
+      "program": "Bachelor of Laws",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S096",
+      "fullName": "Mbabazi Rebecca",
+      "program": "Bachelor of Engineering (Civil)",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S097",
+      "fullName": "Nsamba Mary",
+      "program": "Bachelor of Agricultural Economics",
+      "year": 3,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S098",
+      "fullName": "Tumwine John",
+      "program": "Bachelor of Environmental Health",
+      "year": 2,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S099",
+      "fullName": "Wasswa Florence",
+      "program": "Bachelor of Nursing Science",
+      "year": 4,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Student",
+    "data": {
+      "studentNo": "S100",
+      "fullName": "Ssentongo Samuel",
+      "program": "Diploma in Information Technology",
+      "year": 1,
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Okello David",
+      "role": "LECTURER",
+      "department": "Faculty of Computing & Informatics",
+      "salary": 5200000,
+      "dob": "1982-07-22T00:00:00.000Z",
+      "startDate": "2015-02-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Nakato Sarah",
+      "role": "LECTURER",
+      "department": "Faculty of Education",
+      "salary": 4800000,
+      "dob": "1985-03-15T00:00:00.000Z",
+      "startDate": "2010-09-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Mugisha Robert",
+      "role": "LECTURER",
+      "department": "Faculty of Medicine",
+      "salary": 6500000,
+      "dob": "1978-11-30T00:00:00.000Z",
+      "startDate": "2008-01-15T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Namagembe Prossy",
+      "role": "LECTURER",
+      "department": "Faculty of Business & Management",
+      "salary": 5000000,
+      "dob": "1980-05-12T00:00:00.000Z",
+      "startDate": "2012-07-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Kato Moses",
+      "role": "LECTURER",
+      "department": "Faculty of Law",
+      "salary": 5400000,
+      "dob": "1979-09-03T00:00:00.000Z",
+      "startDate": "2009-03-10T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Ssebunya John",
+      "role": "LECTURER",
+      "department": "Faculty of Engineering",
+      "salary": 5800000,
+      "dob": "1983-12-25T00:00:00.000Z",
+      "startDate": "2014-08-20T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Mbabazi Esther",
+      "role": "LECTURER",
+      "department": "Faculty of Agriculture",
+      "salary": 4900000,
+      "dob": "1986-02-14T00:00:00.000Z",
+      "startDate": "2016-01-05T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Nsamba Judith",
+      "role": "LECTURER",
+      "department": "Faculty of Public Health",
+      "salary": 5100000,
+      "dob": "1981-06-18T00:00:00.000Z",
+      "startDate": "2011-11-11T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Tumwine Patience",
+      "role": "LECTURER",
+      "department": "Faculty of Social Sciences",
+      "salary": 4700000,
+      "dob": "1987-10-09T00:00:00.000Z",
+      "startDate": "2017-04-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Dr. Wasswa Rebecca",
+      "role": "LECTURER",
+      "department": "Faculty of Computing & Informatics",
+      "salary": 5300000,
+      "dob": "1984-01-22T00:00:00.000Z",
+      "startDate": "2013-05-15T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Namagembe Prossy",
+      "role": "ADMIN",
+      "department": "Registry",
+      "salary": 2800000,
+      "dob": "1990-11-05T00:00:00.000Z",
+      "startDate": "2018-06-15T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Okello David",
+      "role": "LIBRARIAN",
+      "department": "University Library",
+      "salary": 3200000,
+      "dob": "1988-04-17T00:00:00.000Z",
+      "startDate": "2016-09-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Mugisha Robert",
+      "role": "ACCOUNTANT",
+      "department": "Finance Office",
+      "salary": 3500000,
+      "dob": "1985-08-30T00:00:00.000Z",
+      "startDate": "2014-12-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Nakato Sarah",
+      "role": "SECRETARY",
+      "department": "Faculty of Education",
+      "salary": 2500000,
+      "dob": "1992-02-14T00:00:00.000Z",
+      "startDate": "2020-01-10T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Staff",
+    "data": {
+      "fullName": "Ssebunya John",
+      "role": "IT_SUPPORT",
+      "department": "ICT Department",
+      "salary": 3400000,
+      "dob": "1989-07-22T00:00:00.000Z",
+      "startDate": "2017-03-01T00:00:00.000Z",
+      "status": "ACTIVE"
+    }
+  },
+  {
+    "model": "Expense",
+    "data": {
+      "category": "Office Supplies",
+      "description": "Purchase of stationery for admin department - January 2025",
+      "amount": 450000,
+      "status": "APPROVED"
+    }
+  },
+  {
+    "model": "Expense",
+    "data": {
+      "category": "Utilities",
+      "description": "Electricity bill for main campus - December 2025",
+      "amount": 3200000,
+      "status": "PAID"
+    }
+  },
+  {
+    "model": "Expense",
+    "data": {
+      "category": "Salaries",
+      "description": "January 2026 teaching staff salaries",
+      "amount": 145000000,
+      "status": "PENDING"
+    }
+  },
+  {
+    "model": "Expense",
+    "data": {
+      "category": "Maintenance",
+      "description": "Roof repairs for science block - November 2025",
+      "amount": 8700000,
+      "status": "APPROVED"
+    }
+  },
+  {
+    "model": "Expense",
+    "data": {
+      "category": "Travel",
+      "description": "Conference travel for faculty members - Kampala to Nairobi",
+      "amount": 2100000,
+      "status": "REJECTED"
+    }
+  }
+]
