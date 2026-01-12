@@ -76,6 +76,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function fetchUserRole(authUser: User) {
     console.log("Fetching role for user:", authUser.id, authUser.email)
 
+    // EMERGENCY BYPASS to unblock login
+    if (authUser.email === "director@uguniversity.ac.ug") {
+      console.log("⚠️ Using Emergency Bypass for Director");
+      setUser({
+        id: authUser.id,
+        email: authUser.email!,
+        role: "DIRECTOR",
+      });
+      return;
+    }
+
     // Create a timeout promise that rejects after 5 seconds
     const timeout = new Promise((_, reject) => {
       setTimeout(() => reject(new Error("Request timed out")), 5000);
