@@ -74,17 +74,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   async function fetchUserRole(authUser: User) {
-    const { data, error } = await supabase
+    console.log("Fetching role for user:", authUser.id, authUser.email)
+
+    // First try by ID (most secure/correct)
+    let { data, error } = await supabase
       .from("User")
       .select("role")
-      .eq("email", authUser.email)
+      .eq("id", authUser.id) // Try ID first
       .single()
+
+    // If ID match fails (e.g. legacy data), try email
+    if ((error || !data) && authUser.email) {
+      console.log("ID match failed, trying email fallback...")
+      const emailResult = await supabase
+        .from("User")
+        .select("role")
+        .eq("email", authUser.email)
+        .single()
+
+      data = emailResult.data
+      error = emailResult.error
+    }
 
     if (error || !data) {
       console.error("Error fetching user role:", error)
+      // Debugging assistance for the user
+      console.log("User details:", authUser)
       setUser(null)
       return
     }
+
+    console.log("Role found:", data.role)
 
     setUser({
       id: authUser.id,
