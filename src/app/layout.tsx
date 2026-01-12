@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter, Plus_Jakarta_Sans } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "sonner"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { QueryProvider } from "@/components/providers/query-provider"
@@ -43,6 +44,7 @@ export default function RootLayout({
                   duration: 4000,
                 }}
               />
+              <Analytics />
             </AuthProvider>
           </QueryProvider>
         </ThemeProvider>
